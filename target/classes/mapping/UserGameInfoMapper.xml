@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.dao.UserGameInfoDao" >
+  <resultMap id="BaseResultMap" type="com.yy.entity.UserGameInfo" >
+    <id column="ugi_id" property="ugiId" jdbcType="INTEGER" />
+    <result column="g_game_type" property="gGameType" jdbcType="INTEGER" />
+    <result column="ugi_win_num" property="ugiWinNum" jdbcType="VARCHAR" />
+    <result column="ugi_lose_num" property="ugiLoseNum" jdbcType="VARCHAR" />
+    <result column="ugi_win_proportion" property="ugiWinProportion" jdbcType="REAL" />
+    <result column="ugi_last_modify" property="ugiLastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ugi_id, g_game_type, ugi_win_num, ugi_lose_num, ugi_win_proportion, ugi_last_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_game_info
+    where ugi_id = #{ugiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_game_info
+    where ugi_id = #{ugiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yy.entity.UserGameInfo" >
+    insert into t_user_game_info (ugi_id, g_game_type, ugi_win_num, 
+      ugi_lose_num, ugi_win_proportion, ugi_last_modify
+      )
+    values (#{ugiId,jdbcType=INTEGER}, #{gGameType,jdbcType=INTEGER}, #{ugiWinNum,jdbcType=VARCHAR}, 
+      #{ugiLoseNum,jdbcType=VARCHAR}, #{ugiWinProportion,jdbcType=REAL}, #{ugiLastModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yy.entity.UserGameInfo" >
+    insert into t_user_game_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ugiId != null" >
+        ugi_id,
+      </if>
+      <if test="gGameType != null" >
+        g_game_type,
+      </if>
+      <if test="ugiWinNum != null" >
+        ugi_win_num,
+      </if>
+      <if test="ugiLoseNum != null" >
+        ugi_lose_num,
+      </if>
+      <if test="ugiWinProportion != null" >
+        ugi_win_proportion,
+      </if>
+      <if test="ugiLastModify != null" >
+        ugi_last_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ugiId != null" >
+        #{ugiId,jdbcType=INTEGER},
+      </if>
+      <if test="gGameType != null" >
+        #{gGameType,jdbcType=INTEGER},
+      </if>
+      <if test="ugiWinNum != null" >
+        #{ugiWinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugiLoseNum != null" >
+        #{ugiLoseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugiWinProportion != null" >
+        #{ugiWinProportion,jdbcType=REAL},
+      </if>
+      <if test="ugiLastModify != null" >
+        #{ugiLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yy.entity.UserGameInfo" >
+    update t_user_game_info
+    <set >
+      <if test="gGameType != null" >
+        g_game_type = #{gGameType,jdbcType=INTEGER},
+      </if>
+      <if test="ugiWinNum != null" >
+        ugi_win_num = #{ugiWinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugiLoseNum != null" >
+        ugi_lose_num = #{ugiLoseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ugiWinProportion != null" >
+        ugi_win_proportion = #{ugiWinProportion,jdbcType=REAL},
+      </if>
+      <if test="ugiLastModify != null" >
+        ugi_last_modify = #{ugiLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ugi_id = #{ugiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yy.entity.UserGameInfo" >
+    update t_user_game_info
+    set g_game_type = #{gGameType,jdbcType=INTEGER},
+      ugi_win_num = #{ugiWinNum,jdbcType=VARCHAR},
+      ugi_lose_num = #{ugiLoseNum,jdbcType=VARCHAR},
+      ugi_win_proportion = #{ugiWinProportion,jdbcType=REAL},
+      ugi_last_modify = #{ugiLastModify,jdbcType=TIMESTAMP}
+    where ugi_id = #{ugiId,jdbcType=INTEGER}
+  </update>
+</mapper>

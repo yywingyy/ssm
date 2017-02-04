@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.dao.InformationDao" >
+  <resultMap id="BaseResultMap" type="com.yy.entity.Information" >
+    <id column="i_id" property="iId" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="u_account_no" property="uAccountNo" jdbcType="VARCHAR" />
+    <result column="u_qq" property="uQq" jdbcType="VARCHAR" />
+    <result column="u_tel" property="uTel" jdbcType="VARCHAR" />
+    <result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+    <result column="u_last_login_address" property="uLastLoginAddress" jdbcType="VARCHAR" />
+    <result column="i_last_modify" property="iLastModify" jdbcType="TIMESTAMP" />
+    <result column="u_id_card" property="uIdCard" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    i_id, u_id, u_account_no, u_qq, u_tel, u_phone, u_last_login_address, i_last_modify, 
+    u_id_card
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_information
+    where i_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_information
+    where i_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yy.entity.Information" >
+    insert into t_information (i_id, u_id, u_account_no, 
+      u_qq, u_tel, u_phone, 
+      u_last_login_address, i_last_modify, u_id_card
+      )
+    values (#{iId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{uAccountNo,jdbcType=VARCHAR}, 
+      #{uQq,jdbcType=VARCHAR}, #{uTel,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR}, 
+      #{uLastLoginAddress,jdbcType=VARCHAR}, #{iLastModify,jdbcType=TIMESTAMP}, #{uIdCard,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yy.entity.Information" >
+    insert into t_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        i_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="uAccountNo != null" >
+        u_account_no,
+      </if>
+      <if test="uQq != null" >
+        u_qq,
+      </if>
+      <if test="uTel != null" >
+        u_tel,
+      </if>
+      <if test="uPhone != null" >
+        u_phone,
+      </if>
+      <if test="uLastLoginAddress != null" >
+        u_last_login_address,
+      </if>
+      <if test="iLastModify != null" >
+        i_last_modify,
+      </if>
+      <if test="uIdCard != null" >
+        u_id_card,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uAccountNo != null" >
+        #{uAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uQq != null" >
+        #{uQq,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null" >
+        #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null" >
+        #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uLastLoginAddress != null" >
+        #{uLastLoginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iLastModify != null" >
+        #{iLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uIdCard != null" >
+        #{uIdCard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yy.entity.Information" >
+    update t_information
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uAccountNo != null" >
+        u_account_no = #{uAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uQq != null" >
+        u_qq = #{uQq,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null" >
+        u_tel = #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null" >
+        u_phone = #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uLastLoginAddress != null" >
+        u_last_login_address = #{uLastLoginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iLastModify != null" >
+        i_last_modify = #{iLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uIdCard != null" >
+        u_id_card = #{uIdCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yy.entity.Information" >
+    update t_information
+    set u_id = #{uId,jdbcType=INTEGER},
+      u_account_no = #{uAccountNo,jdbcType=VARCHAR},
+      u_qq = #{uQq,jdbcType=VARCHAR},
+      u_tel = #{uTel,jdbcType=VARCHAR},
+      u_phone = #{uPhone,jdbcType=VARCHAR},
+      u_last_login_address = #{uLastLoginAddress,jdbcType=VARCHAR},
+      i_last_modify = #{iLastModify,jdbcType=TIMESTAMP},
+      u_id_card = #{uIdCard,jdbcType=VARCHAR}
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>

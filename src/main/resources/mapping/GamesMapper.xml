@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.dao.GamesDao" >
+  <resultMap id="BaseResultMap" type="com.yy.entity.Games" >
+    <id column="g_id" property="gId" jdbcType="INTEGER" />
+    <result column="g_game_type" property="gGameType" jdbcType="INTEGER" />
+    <result column="g_game_name" property="gGameName" jdbcType="VARCHAR" />
+    <result column="g_game_partition" property="gGamePartition" jdbcType="VARCHAR" />
+    <result column="g_game_flag" property="gGameFlag" jdbcType="INTEGER" />
+    <result column="g_last_modify" property="gLastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    g_id, g_game_type, g_game_name, g_game_partition, g_game_flag, g_last_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_games
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_games
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yy.entity.Games" >
+    insert into t_games (g_id, g_game_type, g_game_name, 
+      g_game_partition, g_game_flag, g_last_modify
+      )
+    values (#{gId,jdbcType=INTEGER}, #{gGameType,jdbcType=INTEGER}, #{gGameName,jdbcType=VARCHAR}, 
+      #{gGamePartition,jdbcType=VARCHAR}, #{gGameFlag,jdbcType=INTEGER}, #{gLastModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yy.entity.Games" >
+    insert into t_games
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gId != null" >
+        g_id,
+      </if>
+      <if test="gGameType != null" >
+        g_game_type,
+      </if>
+      <if test="gGameName != null" >
+        g_game_name,
+      </if>
+      <if test="gGamePartition != null" >
+        g_game_partition,
+      </if>
+      <if test="gGameFlag != null" >
+        g_game_flag,
+      </if>
+      <if test="gLastModify != null" >
+        g_last_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gId != null" >
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gGameType != null" >
+        #{gGameType,jdbcType=INTEGER},
+      </if>
+      <if test="gGameName != null" >
+        #{gGameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gGamePartition != null" >
+        #{gGamePartition,jdbcType=VARCHAR},
+      </if>
+      <if test="gGameFlag != null" >
+        #{gGameFlag,jdbcType=INTEGER},
+      </if>
+      <if test="gLastModify != null" >
+        #{gLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yy.entity.Games" >
+    update t_games
+    <set >
+      <if test="gGameType != null" >
+        g_game_type = #{gGameType,jdbcType=INTEGER},
+      </if>
+      <if test="gGameName != null" >
+        g_game_name = #{gGameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gGamePartition != null" >
+        g_game_partition = #{gGamePartition,jdbcType=VARCHAR},
+      </if>
+      <if test="gGameFlag != null" >
+        g_game_flag = #{gGameFlag,jdbcType=INTEGER},
+      </if>
+      <if test="gLastModify != null" >
+        g_last_modify = #{gLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yy.entity.Games" >
+    update t_games
+    set g_game_type = #{gGameType,jdbcType=INTEGER},
+      g_game_name = #{gGameName,jdbcType=VARCHAR},
+      g_game_partition = #{gGamePartition,jdbcType=VARCHAR},
+      g_game_flag = #{gGameFlag,jdbcType=INTEGER},
+      g_last_modify = #{gLastModify,jdbcType=TIMESTAMP}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+</mapper>

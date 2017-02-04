@@ -3,13 +3,13 @@ package com.yy.dao;
 import com.yy.entity.User;
 
 public interface UserDao {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer uId);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Integer uId);
 
     int updateByPrimaryKeySelective(User record);
 

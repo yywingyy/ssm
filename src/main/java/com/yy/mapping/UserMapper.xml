@@ -2,81 +2,163 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yy.dao.UserDao" >
   <resultMap id="BaseResultMap" type="com.yy.entity.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
+    <id column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="u_username" property="uUsername" jdbcType="VARCHAR" />
+    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+    <result column="u_nickname" property="uNickname" jdbcType="VARCHAR" />
+    <result column="u_last_modify" property="uLastModify" jdbcType="TIMESTAMP" />
+    <result column="u_last_login_time" property="uLastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="u_sex" property="uSex" jdbcType="VARCHAR" />
+    <result column="u_age" property="uAge" jdbcType="INTEGER" />
+    <result column="u_flag" property="uFlag" jdbcType="INTEGER" />
+    <result column="u_is_delete" property="uIsDelete" jdbcType="INTEGER" />
+    <result column="u_register_time" property="uRegisterTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, age
+    u_id, u_username, u_password, u_nickname, u_last_modify, u_last_login_time, u_sex, 
+    u_age, u_flag, u_is_delete, u_register_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user_t
-    where id = #{id,jdbcType=INTEGER}
+    from t_user
+    where u_id = #{uId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user_t
-    where id = #{id,jdbcType=INTEGER}
+    delete from t_user
+    where u_id = #{uId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yy.entity.User" >
-    insert into user_t (id, user_name, password, 
-      age)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+    insert into t_user (u_id, u_username, u_password, 
+      u_nickname, u_last_modify, u_last_login_time, 
+      u_sex, u_age, u_flag, 
+      u_is_delete, u_register_time)
+    values (#{uId,jdbcType=INTEGER}, #{uUsername,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uNickname,jdbcType=VARCHAR}, #{uLastModify,jdbcType=TIMESTAMP}, #{uLastLoginTime,jdbcType=TIMESTAMP}, 
+      #{uSex,jdbcType=VARCHAR}, #{uAge,jdbcType=INTEGER}, #{uFlag,jdbcType=INTEGER}, 
+      #{uIsDelete,jdbcType=INTEGER}, #{uRegisterTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.yy.entity.User" >
-    insert into user_t
+    insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="uId != null" >
+        u_id,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="uUsername != null" >
+        u_username,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="uPassword != null" >
+        u_password,
       </if>
-      <if test="age != null" >
-        age,
+      <if test="uNickname != null" >
+        u_nickname,
+      </if>
+      <if test="uLastModify != null" >
+        u_last_modify,
+      </if>
+      <if test="uLastLoginTime != null" >
+        u_last_login_time,
+      </if>
+      <if test="uSex != null" >
+        u_sex,
+      </if>
+      <if test="uAge != null" >
+        u_age,
+      </if>
+      <if test="uFlag != null" >
+        u_flag,
+      </if>
+      <if test="uIsDelete != null" >
+        u_is_delete,
+      </if>
+      <if test="uRegisterTime != null" >
+        u_register_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="uUsername != null" >
+        #{uUsername,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="uPassword != null" >
+        #{uPassword,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
+      <if test="uNickname != null" >
+        #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uLastModify != null" >
+        #{uLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uLastLoginTime != null" >
+        #{uLastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSex != null" >
+        #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null" >
+        #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uFlag != null" >
+        #{uFlag,jdbcType=INTEGER},
+      </if>
+      <if test="uIsDelete != null" >
+        #{uIsDelete,jdbcType=INTEGER},
+      </if>
+      <if test="uRegisterTime != null" >
+        #{uRegisterTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yy.entity.User" >
-    update user_t
+    update t_user
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="uUsername != null" >
+        u_username = #{uUsername,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="uPassword != null" >
+        u_password = #{uPassword,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
+      <if test="uNickname != null" >
+        u_nickname = #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uLastModify != null" >
+        u_last_modify = #{uLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uLastLoginTime != null" >
+        u_last_login_time = #{uLastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSex != null" >
+        u_sex = #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null" >
+        u_age = #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uFlag != null" >
+        u_flag = #{uFlag,jdbcType=INTEGER},
+      </if>
+      <if test="uIsDelete != null" >
+        u_is_delete = #{uIsDelete,jdbcType=INTEGER},
+      </if>
+      <if test="uRegisterTime != null" >
+        u_register_time = #{uRegisterTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yy.entity.User" >
-    update user_t
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    update t_user
+    set u_username = #{uUsername,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_nickname = #{uNickname,jdbcType=VARCHAR},
+      u_last_modify = #{uLastModify,jdbcType=TIMESTAMP},
+      u_last_login_time = #{uLastLoginTime,jdbcType=TIMESTAMP},
+      u_sex = #{uSex,jdbcType=VARCHAR},
+      u_age = #{uAge,jdbcType=INTEGER},
+      u_flag = #{uFlag,jdbcType=INTEGER},
+      u_is_delete = #{uIsDelete,jdbcType=INTEGER},
+      u_register_time = #{uRegisterTime,jdbcType=TIMESTAMP}
+    where u_id = #{uId,jdbcType=INTEGER}
   </update>
 </mapper>

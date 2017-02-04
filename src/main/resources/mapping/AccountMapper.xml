@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yy.dao.AccountDao" >
+  <resultMap id="BaseResultMap" type="com.yy.entity.Account" >
+    <id column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="i_id" property="iId" jdbcType="INTEGER" />
+    <result column="u_money" property="uMoney" jdbcType="INTEGER" />
+    <result column="u_point" property="uPoint" jdbcType="INTEGER" />
+    <result column="u_score" property="uScore" jdbcType="INTEGER" />
+    <result column="u_game_money" property="uGameMoney" jdbcType="INTEGER" />
+    <result column="u_game_vip" property="uGameVip" jdbcType="INTEGER" />
+    <result column="a_last_modify" property="aLastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_id, i_id, u_money, u_point, u_score, u_game_money, u_game_vip, a_last_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yy.entity.Account" >
+    insert into t_account (a_id, i_id, u_money, 
+      u_point, u_score, u_game_money, 
+      u_game_vip, a_last_modify)
+    values (#{aId,jdbcType=INTEGER}, #{iId,jdbcType=INTEGER}, #{uMoney,jdbcType=INTEGER}, 
+      #{uPoint,jdbcType=INTEGER}, #{uScore,jdbcType=INTEGER}, #{uGameMoney,jdbcType=INTEGER}, 
+      #{uGameVip,jdbcType=INTEGER}, #{aLastModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yy.entity.Account" >
+    insert into t_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="iId != null" >
+        i_id,
+      </if>
+      <if test="uMoney != null" >
+        u_money,
+      </if>
+      <if test="uPoint != null" >
+        u_point,
+      </if>
+      <if test="uScore != null" >
+        u_score,
+      </if>
+      <if test="uGameMoney != null" >
+        u_game_money,
+      </if>
+      <if test="uGameVip != null" >
+        u_game_vip,
+      </if>
+      <if test="aLastModify != null" >
+        a_last_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="iId != null" >
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="uMoney != null" >
+        #{uMoney,jdbcType=INTEGER},
+      </if>
+      <if test="uPoint != null" >
+        #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uScore != null" >
+        #{uScore,jdbcType=INTEGER},
+      </if>
+      <if test="uGameMoney != null" >
+        #{uGameMoney,jdbcType=INTEGER},
+      </if>
+      <if test="uGameVip != null" >
+        #{uGameVip,jdbcType=INTEGER},
+      </if>
+      <if test="aLastModify != null" >
+        #{aLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yy.entity.Account" >
+    update t_account
+    <set >
+      <if test="iId != null" >
+        i_id = #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="uMoney != null" >
+        u_money = #{uMoney,jdbcType=INTEGER},
+      </if>
+      <if test="uPoint != null" >
+        u_point = #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uScore != null" >
+        u_score = #{uScore,jdbcType=INTEGER},
+      </if>
+      <if test="uGameMoney != null" >
+        u_game_money = #{uGameMoney,jdbcType=INTEGER},
+      </if>
+      <if test="uGameVip != null" >
+        u_game_vip = #{uGameVip,jdbcType=INTEGER},
+      </if>
+      <if test="aLastModify != null" >
+        a_last_modify = #{aLastModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yy.entity.Account" >
+    update t_account
+    set i_id = #{iId,jdbcType=INTEGER},
+      u_money = #{uMoney,jdbcType=INTEGER},
+      u_point = #{uPoint,jdbcType=INTEGER},
+      u_score = #{uScore,jdbcType=INTEGER},
+      u_game_money = #{uGameMoney,jdbcType=INTEGER},
+      u_game_vip = #{uGameVip,jdbcType=INTEGER},
+      a_last_modify = #{aLastModify,jdbcType=TIMESTAMP}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>
