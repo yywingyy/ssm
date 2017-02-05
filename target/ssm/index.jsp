@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>用户登录</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}resource/css/normalize.min.css">
+    <link rel="stylesheet" href="<c:url value='/resource/css/normalize.min.css'/>">
     <style>
         /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
         @import url(http://fonts.googleapis.com/css?family=Open+Sans);
@@ -66,8 +66,8 @@
         input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 
     </style>
-    <script type="text/javascript" src="${pageContext.request.contextPath}resource/js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}resource/js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="<c:url value="/resource/js/jquery-3.1.1.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resource/js/prefixfree.min.js"/>"></script>
 
 </head>
 <body>

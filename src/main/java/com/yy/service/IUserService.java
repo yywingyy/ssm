@@ -6,4 +6,5 @@ package com.yy.service;
 import com.yy.entity.User;
 public interface IUserService {
     public User getUserById(int userId);
+    public User userLogin(String username);
 }
