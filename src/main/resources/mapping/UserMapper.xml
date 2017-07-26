@@ -161,10 +161,10 @@
       u_register_time = #{uRegisterTime,jdbcType=TIMESTAMP}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
-  <select id="findUserByUsername" parameterType="com.yy.entity.User">
+  <select id="findUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     <include refid="Base_Column_List" />
     from t_user
-    where u_username = #{uUsername,jdbcType=String}
+    where u_username = #{uUsername,jdbcType=VARCHAR}
   </select>
 </mapper>

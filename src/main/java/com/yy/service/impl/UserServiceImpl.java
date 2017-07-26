@@ -3,12 +3,14 @@ package com.yy.service.impl;
 import com.yy.dao.UserDao;
 import com.yy.entity.User;
 import com.yy.service.IUserService;
+import com.yy.util.ResultAjax;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
  * Created by yy on 2017/2/3.
+ *
  */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
@@ -21,7 +23,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User userLogin(String username) {
+    public User userLogin(String username,String password) {
         return userDao.findUserByUsername(username);
     }
 }
